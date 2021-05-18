@@ -17,3 +17,7 @@ class NotEnoughAssetsError(Error):
 class InvalidValueError(Error):
     """Raised when an invalid value is submitted."""
     pass
+
+class IncompatibleSettingError(Error):
+    """Raised when a setting value is incompatible with another setting value."""
+    pass
