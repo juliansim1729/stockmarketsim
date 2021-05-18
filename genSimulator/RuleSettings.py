@@ -56,7 +56,7 @@ class RuleSettings:
         if float(settingVal) <= 0:
             raise InvalidValueError("You must insert a positive number!")
         else:
-            self.ratingSensitivity = settingVal
+            self.ratingSensitivity = float(settingVal)
             return True
 
     """
@@ -75,6 +75,7 @@ class RuleSettings:
         Sets whether overall game score is used or internal game score
 
         (Whether a game is counted as 1-0 or 4-2)
+        For further information, please check the wiki.
         Arguments:
         settingVal -- True/False
         """
@@ -104,6 +105,7 @@ class RuleSettings:
         Sets whether the games conclude when a side hits a certain amount of wins vs a set amount of games are played
 
         (First to 4 vs Everyone plays 7 games)
+        For further information, please check the wiki.
         Arguments:
         settingVal -- True/False
         """
@@ -119,3 +121,31 @@ class RuleSettings:
                 else:
                     self.useFirstTo = False
                 return True
+
+    """
+    5: userStartingCash: Setting Type: User Customization
+    """
+
+    def getUserStartingCash(self):
+        """
+        Gets user starting cash
+        """
+
+        return self.userStartingCash
+
+    def setUserStartingCash(self, settingVal):
+        """
+        Sets the amount of starting cash for a user
+
+        For further information, please check the wiki.
+        Arguments:
+        settingVal -- non-negative Value
+        Returns:
+        True if process completes successfully
+        """
+
+        if float(settingVal) < 0:
+            raise InvalidValueError("You must insert a non-negative value.")
+        else:
+            self.userStartingCash = float(settingVal)
+            return True
