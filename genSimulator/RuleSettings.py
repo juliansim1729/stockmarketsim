@@ -32,21 +32,6 @@ class RuleSettings:
         self.stockStartingPrice = ruleInitArray[6]
 
     """
-    0: Basics: Error Messages
-    """
-    def setErrorMessage(self, msg):
-        """
-        Sets error message to the requested message
-
-        Arguments:
-        msg -- a string
-        Returns:
-        Nothing
-        """
-        if isinstance(msg, str):
-            self.errorMessage = msg
-
-    """
     1: stockDeltaMethod: Setting Type: Ratings
     """
     def setStockDeltaMethod(self, settingVal):
@@ -71,7 +56,7 @@ class RuleSettings:
                 self.stockDeltaMethod = settingVal
                 return True
         except InvalidValueError:
-             self.setErrorMessage("You must choose between the following options: manual, elo, glicko, dwz.")
+             self.errorMessage = "You must choose between the following options: manual, elo, glicko, dwz."
              return False
 
     """
@@ -101,10 +86,10 @@ class RuleSettings:
                 self.ratingSensitivity = float(settingVal)
                 return True
         except InvalidValueError:
-            self.setErrorMessage("You must insert a positive number.")
+            self.errorMessage = "You must insert a positive number."
             return False
         except ValueError:
-            self.setErrorMessage("You must insert a positive number.")
+            self.errorMessage = "You must insert a positive number."
 
     """
     3: useOverallScores:  Setting Type: Ratings
@@ -132,7 +117,7 @@ class RuleSettings:
                     self.useOverallScores = False
                 return True
         except InvalidValueError:
-            self.setErrorMessage("You must insert a True/False value.")
+            self.errorMessage = "You must insert a True/False value."
             return False
 
     """
@@ -165,10 +150,10 @@ class RuleSettings:
                         self.useFirstTo = False
                     return True
         except IncompatibleSettingError:
-            self.setErrorMessage("Overall scores cannot be used with this setting.")
+            self.errorMessage = "Overall scores cannot be used with this setting."
             return False
         except InvalidValueError:
-            self.setErrorMessage("You must insert a True/False value.")
+            self.errorMessage = "You must insert a True/False value."
             return False
 
     """
@@ -190,10 +175,10 @@ class RuleSettings:
                 self.userStartingCash = float(settingVal)
                 return True
         except InvalidValueError:
-            self.setErrorMessage("You must insert a non-negative value.")
+            self.errorMessage = "You must insert a non-negative value."
             return False
         except ValueError:
-            self.setErrorMessage("You must insert a positive number.")
+            self.errorMessage = "You must insert a positive number."
 
     """
     6: stockStartingPrice: Setting Type: Stock Customization
@@ -214,7 +199,7 @@ class RuleSettings:
                 self.stockStartingPrice = float(settingVal)
                 return True
         except InvalidValueError:
-            self.setErrorMessage("You must insert a positive value.")
+            self.errorMessage = "You must insert a positive value."
             return False
         except ValueError:
-            self.setErrorMessage("You must insert a positive number.")
+            self.errorMessage = "You must insert a positive number."
