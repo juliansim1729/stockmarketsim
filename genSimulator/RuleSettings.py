@@ -33,12 +33,6 @@ class RuleSettings:
     """
     0: Basics: Error Messages
     """
-    def getErrorMessage(self):
-        """
-        Returns loaded error message
-        """
-        return self._errorMessage
-
     def setErrorMessage(self, msg):
         """
         Sets error message to the requested message
@@ -54,13 +48,6 @@ class RuleSettings:
     """
     1: stockDeltaMethod: Setting Type: Ratings
     """
-
-    def getStockDeltaMethod(self):
-        """
-        Returns stockDeltaMethod
-        """
-        return self._stockDeltaMethod
-
     def setStockDeltaMethod(self, settingVal):
         """
         Sets the stock delta method to the specified option
@@ -89,13 +76,6 @@ class RuleSettings:
     """
     2: ratingSensitivity: Setting Type: Ratings
     """
-
-    def getRatingSensitivity(self):
-        """
-        Returns ratingSensitivity
-        """
-        return self._ratingSensitivity
-
     def setRatingSensitivity(self, settingVal):
         """
         Sets the sensitivity of the delta method to the specified value
@@ -126,13 +106,6 @@ class RuleSettings:
     """
     3: useOverallScores:  Setting Type: Ratings
     """
-
-    def getUseOverallScores(self):
-        """
-        returns useOverallScores
-        """
-        return self._useOverallScores
-
     def setUseOverallScores(self, settingVal):
         """
         Sets whether overall game score is used or internal game score
@@ -162,14 +135,6 @@ class RuleSettings:
     """
     4: useFirstTo: Setting Type: Ratings
     """
-
-    def getUseFirstTo(self):
-        """
-        Gets useFirstTo value
-        """
-
-        return self._useFirstTo
-
     def setUseFirstTo(self, settingVal):
         """
         Sets the game format type
@@ -206,13 +171,6 @@ class RuleSettings:
     """
     5: userStartingCash: Setting Type: User Customization
     """
-
-    def getUserStartingCash(self):
-        """
-        gets userStartingCash
-        """
-        return self._userStartingCash
-
     def setUserStartingCash(self, settingVal):
         """
         Sets the amount of starting cash for a user
