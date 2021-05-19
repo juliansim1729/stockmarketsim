@@ -123,3 +123,25 @@ class User:
         for i in range(len(self.pfCodes)):
             fArr.append("You have {0} shares of {1} ({2}).".format(self.pfQuants[i], currMarket.stockNames[currMarket.stockCodes.index(self.pfCodes[i])], self.pfCodes[i]))
         return "\n".join(fArr)
+
+    def transferCash(self, otherUser, amount):
+        """
+        transfers a specific amount to another user
+
+        Arguments:
+        otherUser -- user object
+        amount -- float amount
+
+        Returns:
+        Boolean based on whether process completed successfully
+        """
+        try:
+            if self.availableCash > amount:
+                self.availableCash -= amount
+                otherUser.availableCash += amount
+                return True
+            else:
+                raise InsufficientFundsError()
+        except InsufficientFundsError:
+            self.errorMessage = "You require additional funds for the transfer."
+            return False
