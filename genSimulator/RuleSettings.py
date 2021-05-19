@@ -83,7 +83,7 @@ class RuleSettings:
                 self._stockDeltaMethod = settingVal
                 return True
         except InvalidValueError:
-             self._errorMessage = "You must choose between the following options: manual, elo, glicko, dwz."
+             self.setErrorMessage("You must choose between the following options: manual, elo, glicko, dwz.")
              return False
 
     """
@@ -120,7 +120,7 @@ class RuleSettings:
                 self._ratingSensitivity = float(settingVal)
                 return True
         except InvalidValueError:
-            self._errorMessage = "You must insert a positive number."
+            self.setErrorMessage("You must insert a positive number.")
             return False
 
     """
@@ -156,7 +156,7 @@ class RuleSettings:
                     self._useOverallScores = False
                 return True
         except InvalidValueError:
-            self._errorMessage = "You must insert a True/False value."
+            self.setErrorMessage("You must insert a True/False value.")
             return False
 
     """
@@ -197,10 +197,10 @@ class RuleSettings:
                         self._useFirstTo = False
                     return True
         except IncompatibleSettingError:
-            self._errorMessage = "Overall scores cannot be used with this setting."
+            self.setErrorMessage("Overall scores cannot be used with this setting.")
             return False
         except InvalidValueError:
-            self._errorMessage = "You must insert a True/False value."
+            self.setErrorMessage("You must insert a True/False value.")
             return False
 
     """
@@ -229,5 +229,5 @@ class RuleSettings:
                 self._userStartingCash = float(settingVal)
                 return True
         except InvalidValueError:
-            self._errorMessage = "You must insert a non-negative value."
+            self.setErrorMessage("You must insert a non-negative value.")
             return False
