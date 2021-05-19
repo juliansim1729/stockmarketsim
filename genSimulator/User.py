@@ -37,6 +37,7 @@ class User:
         stock -- stock code for desired item
         quant -- quantity desired to buy (integer or "max")
         currMarket -- a Market object
+
         Returns:
         Boolean based on whether process completed successfully
         """
@@ -76,6 +77,7 @@ class User:
         stock -- stock code for desired item
         quant -- quantity desired to sell (integer or "max")
         currMarket -- a Market object
+
         Returns:
         Boolean based on whether process completed successfully
         """
@@ -106,3 +108,18 @@ class User:
         except InvalidValueError:
             self.errorMessage = "You must insert a positive integer value."
             return False
+
+    def checkInventory(self, currMarket):
+        """
+        returns an aesthetically pleasing inventory string
+
+        Arguments:
+        currMarket -- a Market object
+
+        Returns:
+        Formatted string
+        """
+        fArr = []
+        for i in range(len(self.pfCodes)):
+            fArr.append("You have {0} shares of {1} ({2}).".format(self.pfQuants[i], currMarket.stockNames[currMarket.stockCodes.index(self.pfCodes[i])], self.pfCodes[i]))
+        return "\n".join(fArr)
