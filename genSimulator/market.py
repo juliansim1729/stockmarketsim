@@ -16,6 +16,16 @@ class Market:
         self.stockPrices = []
         self.quants = []
 
+    def returnPrice(self, stock):
+        """
+        Returns the price of a given stock code
+
+        Arguments:
+        stock -- the stock code
+        """
+        return self.stockPrices[self.stockCodes.index(stock)]
+
+
     def addNewStock(self, sName, sCode, currSys, desiredDelta = 0):
         """
         Adds a new stock to the market

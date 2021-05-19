@@ -15,5 +15,14 @@ class User:
 
     def liquidate(self, currMarket):
         """
+        liquidates current portfolio and turns it entirely into cash
 
+        Arguments:
+        currMarket -- a Market object
         """
+        portfolioWorth = 0
+
+        for pkg in portfolio:
+            portfolioWorth += pkg[1]*currMarket.returnPrice(pkg[0])
+        self.availableCash += portfolioWorth
+        self.portfolio = []
