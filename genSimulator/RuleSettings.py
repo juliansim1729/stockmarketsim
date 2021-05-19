@@ -103,6 +103,8 @@ class RuleSettings:
         except InvalidValueError:
             self.setErrorMessage("You must insert a positive number.")
             return False
+        except ValueError:
+            self.setErrorMessage("You must insert a positive number.")
 
     """
     3: useOverallScores:  Setting Type: Ratings
@@ -190,6 +192,8 @@ class RuleSettings:
         except InvalidValueError:
             self.setErrorMessage("You must insert a non-negative value.")
             return False
+        except ValueError:
+            self.setErrorMessage("You must insert a positive number.")
 
     """
     6: stockStartingPrice: Setting Type: Stock Customization
@@ -208,7 +212,9 @@ class RuleSettings:
                 raise InvalidValueError()
             else:
                 self.stockStartingPrice = float(settingVal)
-                return True 
+                return True
         except InvalidValueError:
             self.setErrorMessage("You must insert a positive value.")
             return False
+        except ValueError:
+            self.setErrorMessage("You must insert a positive number.")
