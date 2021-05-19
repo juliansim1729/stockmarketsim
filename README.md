@@ -1,1 +1,5 @@
 # stockmarketsim
+
+Around 2018, I was running a competitive gaming league which for the purposes of this code can be compared somewhat similarly to blitz chess (A series of 1v1 games which would create game scores, which would then be used to determine the match winner.) In order to boost interest, I made a ELO tracker which would be updated from match results, and let people "buy" them like stocks and had a mini-game outside of the game to make the most 'money'. High stocks (good teams/players) were expected to rise more reliably and thus costed more, and low stocks (worse teams/players) were expected to be unreliable at increasing, and thus were cheaper.
+
+It was a very crude piece of code requiring lots of moving parts outside of the code in addition to being done entirely inside of one class (a monstrosity having several hundred lines of unreadable mess). The plan is to make a cleaner and more efficient version of that project with a singular input: match results. Otherwise, I plan to make this project fully automatic.
