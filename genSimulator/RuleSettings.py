@@ -166,7 +166,6 @@ class RuleSettings:
         """
         gets userStartingCash
         """
-
         return self.userStartingCash
 
     def setUserStartingCash(self, settingVal):
