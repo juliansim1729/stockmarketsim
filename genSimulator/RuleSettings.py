@@ -1,10 +1,34 @@
 class RuleSettings:
     """stores setting information on the stock market simulator"""
 
-    def __init__(self, ruleInitString = 'default'):
-        pass
+    def __init__(self, ruleInitArray = 'default'):
+        """
+        Standard init method
 
+        Arguments:
+        ruleInitArray - a string with compact setting preferences
+        - entry 0 is a checksum?, rest are settings
 
+        - currently unimplemented argument, planned for later
+        - probably enable a few presets depending on usage of the code
+        - also enable a manual which will probably be generated from a
+        questionnairelike on startup -- ask between preset and manual entry
+        """
+        # generics
+        self.errorMessage = ""
+
+        # rule preset translation
+        if ruleInitArray == "default":
+            ruleInitArray = [0, "glicko", 8, "False", "True", 100000]
+
+        # set rules
+        # made each rule a var instead of an array entry to improve intercode legibility
+
+        self.stockDeltaMethod = ruleInitArray[1]
+        self.ratingSensitivity = ruleInitArray[2]
+        self.useOverallScores = ruleInitArray[3]
+        self.useFirstTo = ruleInitArray[4]
+        self.userStartingCash = ruleInitArray[5]
 
     """
     1: stockDeltaMethod: Setting Type: Ratings
