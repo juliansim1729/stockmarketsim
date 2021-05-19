@@ -19,7 +19,7 @@ class RuleSettings:
 
         # rule preset translation
         if ruleInitArray == "default":
-            ruleInitArray = [0, "glicko", 8, "False", "True", 100000]
+            ruleInitArray = [0, "glicko", 8, "False", "True", 100000, 100]
 
         # set rules
         # made each rule a var instead of an array entry to improve intercode legibility
@@ -29,6 +29,7 @@ class RuleSettings:
         self.useOverallScores = ruleInitArray[3]
         self.useFirstTo = ruleInitArray[4]
         self.userStartingCash = ruleInitArray[5]
+        self.stockStartingPrice = ruleInitArray[6]
 
     """
     0: Basics: Error Messages
@@ -176,7 +177,7 @@ class RuleSettings:
         Sets the amount of starting cash for a user
 
         Arguments:
-        settingVal -- non-negative Value
+        settingVal -- non-negative value
         Returns:
         Boolean based on whether process completed successfully
         """
@@ -188,4 +189,26 @@ class RuleSettings:
                 return True
         except InvalidValueError:
             self.setErrorMessage("You must insert a non-negative value.")
+            return False
+
+    """
+    6: stockStartingPrice: Setting Type: Stock Customization
+    """
+    def setStockStartingPrice(self, settingVal):
+        """
+        Sets the starting price for the default stock
+
+        Arguments:
+        settingVal -- positive value
+        Returns:
+        Boolean based on whether process completed successfully
+        """
+        try:
+            if float(settingVal) <= 0:
+                raise InvalidValueError()
+            else:
+                self.stockStartingPrice = float(settingVal)
+                return True 
+        except InvalidValueError:
+            self.setErrorMessage("You must insert a positive value.")
             return False
