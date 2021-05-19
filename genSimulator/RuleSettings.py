@@ -15,7 +15,7 @@ class RuleSettings:
         questionnairelike on startup -- ask between preset and manual entry
         """
         # generics
-        self.errorMessage = ""
+        self._errorMessage = ""
 
         # rule preset translation
         if ruleInitArray == "default":
@@ -24,11 +24,32 @@ class RuleSettings:
         # set rules
         # made each rule a var instead of an array entry to improve intercode legibility
 
-        self.stockDeltaMethod = ruleInitArray[1]
-        self.ratingSensitivity = ruleInitArray[2]
-        self.useOverallScores = ruleInitArray[3]
-        self.useFirstTo = ruleInitArray[4]
-        self.userStartingCash = ruleInitArray[5]
+        self._stockDeltaMethod = ruleInitArray[1]
+        self._ratingSensitivity = ruleInitArray[2]
+        self._useOverallScores = ruleInitArray[3]
+        self._useFirstTo = ruleInitArray[4]
+        self._userStartingCash = ruleInitArray[5]
+
+    """
+    0: Basics: Error Messages
+    """
+    def getErrorMessage(self):
+        """
+        Returns loaded error message
+        """
+        return self._errorMessage
+
+    def setErrorMessage(self, msg):
+        """
+        Sets error message to the requested message
+
+        Arguments:
+        msg -- a string
+        Returns:
+        Nothing
+        """
+        if isinstance(msg, str):
+            self._errorMessage = msg
 
     """
     1: stockDeltaMethod: Setting Type: Ratings
@@ -38,7 +59,7 @@ class RuleSettings:
         """
         Returns stockDeltaMethod
         """
-        return self.stockDeltaMethod
+        return self._stockDeltaMethod
 
     def setStockDeltaMethod(self, settingVal):
         """
@@ -59,10 +80,10 @@ class RuleSettings:
             if settingVal not in ['manual', 'elo', 'glicko', 'dwz']:
                 raise InvalidValueError()
             else:
-                self.stockDeltaMethod = settingVal
+                self._stockDeltaMethod = settingVal
                 return True
         except InvalidValueError:
-             self.errorMessage = "You must choose between the following options: manual, elo, glicko, dwz."
+             self._errorMessage = "You must choose between the following options: manual, elo, glicko, dwz."
              return False
 
     """
@@ -73,7 +94,7 @@ class RuleSettings:
         """
         Returns ratingSensitivity
         """
-        return self.ratingSensitivity
+        return self._ratingSensitivity
 
     def setRatingSensitivity(self, settingVal):
         """
@@ -96,10 +117,10 @@ class RuleSettings:
             if float(settingVal) <= 0:
                 raise InvalidValueError()
             else:
-                self.ratingSensitivity = float(settingVal)
+                self._ratingSensitivity = float(settingVal)
                 return True
         except InvalidValueError:
-            self.errorMessage = "You must insert a positive number."
+            self._errorMessage = "You must insert a positive number."
             return False
 
     """
@@ -110,7 +131,7 @@ class RuleSettings:
         """
         returns useOverallScores
         """
-        return self.useOverallScores
+        return self._useOverallScores
 
     def setUseOverallScores(self, settingVal):
         """
@@ -130,12 +151,12 @@ class RuleSettings:
                 raise InvalidValueError()
             else:
                 if settingVal.lower() in ['t', 'true', '1']:
-                    self.useOverallScores = True
+                    self._useOverallScores = True
                 else:
-                    self.useOverallScores = False
+                    self._useOverallScores = False
                 return True
         except InvalidValueError:
-            self.errorMessage = "You must insert a True/False value."
+            self._errorMessage = "You must insert a True/False value."
             return False
 
     """
@@ -147,7 +168,7 @@ class RuleSettings:
         Gets useFirstTo value
         """
 
-        return self.useFirstTo
+        return self._useFirstTo
 
     def setUseFirstTo(self, settingVal):
         """
@@ -164,22 +185,22 @@ class RuleSettings:
         Boolean based on whether process completed successfully
         """
         try:
-            if self.useOverallScores == True:
+            if self._useOverallScores == True:
                 raise IncompatibleSettingError()
             else:
                 if settingVal.lower() not in ['t', 'true', '1', 'f', 'false', '0']:
                     raise InvalidValueError()
                 else:
                     if settingVal.lower() in ['t', 'true', '1']:
-                        self.useFirstTo = True
+                        self._useFirstTo = True
                     else:
-                        self.useFirstTo = False
+                        self._useFirstTo = False
                     return True
         except IncompatibleSettingError:
-            self.errorMessage = "Overall scores cannot be used with this setting."
+            self._errorMessage = "Overall scores cannot be used with this setting."
             return False
         except InvalidValueError:
-            self.errorMessage = "You must insert a True/False value."
+            self._errorMessage = "You must insert a True/False value."
             return False
 
     """
@@ -190,7 +211,7 @@ class RuleSettings:
         """
         gets userStartingCash
         """
-        return self.userStartingCash
+        return self._userStartingCash
 
     def setUserStartingCash(self, settingVal):
         """
@@ -205,8 +226,8 @@ class RuleSettings:
             if float(settingVal) < 0:
                 raise InvalidValueError()
             else:
-                self.userStartingCash = float(settingVal)
+                self._userStartingCash = float(settingVal)
                 return True
         except InvalidValueError:
-            self.errorMessage = "You must insert a non-negative value."
+            self._errorMessage = "You must insert a non-negative value."
             return False
